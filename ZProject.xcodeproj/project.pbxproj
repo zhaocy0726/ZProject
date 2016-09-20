@@ -359,6 +359,7 @@
 		18006EF11D8FC58B00CDA77D /* Network(网络) */ = {
 			isa = PBXGroup;
 			children = (
+				180072341D90CDF900CDA77D /* ViewModel */,
 				18006EF21D8FC58B00CDA77D /* Request(网络请求) */,
 				18006EF51D8FC58B00CDA77D /* Service(服务) */,
 			);
@@ -454,6 +455,29 @@
 			);
 			name = "Vender(第三方)";
 			path = Vender;
+			sourceTree = "<group>";
+		};
+		180072341D90CDF900CDA77D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				180072351D90CDF900CDA77D /* BaseViewModel */,
+				180072361D90CDF900CDA77D /* PublicViewModel */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		180072351D90CDF900CDA77D /* BaseViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = BaseViewModel;
+			sourceTree = "<group>";
+		};
+		180072361D90CDF900CDA77D /* PublicViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PublicViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
