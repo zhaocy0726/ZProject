@@ -9,9 +9,9 @@
 #ifndef Block_h
 #define Block_h
 
-// 网络请求返回的block类型
-typedef void (^ReturnBlock) (id returnValue);
-typedef void (^FailureBlock)(NSError *error);
+// 网络请求返回结果
+typedef void(^ReturnBlock)(id object,NSError *error);
+// 网络状态放回结果
 typedef void (^NetworkStateBlock) (id networkState);
 
 #endif /* Block_h */
