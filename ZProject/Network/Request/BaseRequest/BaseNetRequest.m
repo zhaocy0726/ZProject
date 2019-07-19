@@ -24,4 +24,13 @@
     return  outputStr;
 }
 
+- (NSString *)toJSONStringWithArray:(NSArray *)array {
+    NSData *data = [NSJSONSerialization dataWithJSONObject:array options:NSJSONReadingMutableLeaves | NSJSONReadingAllowFragments error:nil];
+    
+    if (data == nil) { return nil; }
+    
+    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    return string;
+}
+
 @end

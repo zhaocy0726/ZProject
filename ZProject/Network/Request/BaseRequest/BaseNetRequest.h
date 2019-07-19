@@ -13,4 +13,7 @@
 // 输入字符编码转义（主要用于搜索）
 - (NSString *)encodeToPercentEscapeString:(NSString *)string;
 
+/** 数组转JSON */
+- (NSString *)toJSONStringWithArray:(NSArray *)array;
+
 @end
