@@ -10,4 +10,11 @@
 
 @interface BaseModel : NSObject <NSCoding>
 
+/**
+ 模型转字典
+ 
+ @return 字典
+ */
+- (NSMutableDictionary *)createDictionayFromModelProperties;
+
 @end
