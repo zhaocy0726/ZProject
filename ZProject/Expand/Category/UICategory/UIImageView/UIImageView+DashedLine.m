@@ -25,7 +25,7 @@
     //起始点设置为(0,0):注意这是上下文对应区域中的相对坐标
     CGContextMoveToPoint(line, 0.0, 0.0); //开始画线
     //设置下一个坐标点
-    CGContextAddLineToPoint(line, Screen_Width - 30, 2.0);
+    CGContextAddLineToPoint(line, SCREEN_WIDTH - 30, 2.0);
     
     CGContextStrokePath(line);
     // UIGraphicsGetImageFromCurrentImageContext()返回的就是image

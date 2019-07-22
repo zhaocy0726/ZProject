@@ -586,7 +586,7 @@
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
     [style setLineBreakMode:NSLineBreakByTruncatingTail];
     NSDictionary *attributes = @{ NSFontAttributeName : [UIFont boldSystemFontOfSize:fontSize], NSParagraphStyleAttributeName : style };
-    CGSize textSize = [text boundingRectWithSize:CGSizeMake(Screen_Width, 44)
+    CGSize textSize = [text boundingRectWithSize:CGSizeMake(SCREEN_WIDTH, 44)
                                          options:opts
                                       attributes:attributes
                                          context:nil].size;

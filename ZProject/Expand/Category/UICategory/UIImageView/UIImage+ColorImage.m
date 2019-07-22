@@ -13,7 +13,7 @@
 //通过颜色来生成一个纯色图片
 - (UIImage *)initWithColor:(UIColor *)color {
     
-    CGRect rect = CGRectMake(0, 0, Screen_Width, Screen_Height);
+    CGRect rect = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetFillColorWithColor(context, [color CGColor]);

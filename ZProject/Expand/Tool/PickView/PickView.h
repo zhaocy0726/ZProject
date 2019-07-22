@@ -1,16 +1,16 @@
 //
-//  FRPickView.h
+//  PickView.h
 //  youbei
 //
 //  Created by 赵春阳 on 2018/10/17.
 //  Copyright © 2018 赵春阳. All rights reserved.
 //
 
-#import "YBBaseView.h"
+#import "BaseView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FRPickView : YBBaseView
+@interface PickView : BaseView
 
 @property (assign, nonatomic ,readonly) BOOL showing;
 

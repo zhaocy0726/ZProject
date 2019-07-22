@@ -32,7 +32,7 @@
     //  设置路径
     CGMutablePathRef path = CGPathCreateMutable();
     CGPathMoveToPoint(path, NULL, 30, 0);
-    CGPathAddLineToPoint(path, NULL, Screen_Width - 30, 0);
+    CGPathAddLineToPoint(path, NULL, SCREEN_WIDTH - 30, 0);
     [shapeLayer setPath:path];
     CGPathRelease(path);
     //  把绘制好的虚线添加上来

@@ -263,6 +263,7 @@ NSString *ZHttpRequestMethodString (ENUM_ZHttpRequestMethod method)
     
     NSInteger resultCode = [[responseObject objectForKey:@"status"] integerValue];
     NSString *resultMsg  = [responseObject objectForKey:@"message"];
+    
     if (resultCode == 200) {
         NSString *returnJson = [responseObject objectForKey:@"data"];
         NSLog(@"接口地址:%@,\n 请求方式:%@\n 接口参数:%@,\n 返回结果:%@", url, method, parameters, returnJson);
@@ -271,10 +272,12 @@ NSString *ZHttpRequestMethodString (ENUM_ZHttpRequestMethod method)
         NSDictionary *returnObject = [returnJson mj_JSONObject];
         if (returnObject) {
             completeBlock(returnObject, nil);
-        } else {
+        }
+        else {
             completeBlock(returnJson, nil);
         }
-    } else {   // 错误
+    }
+    else {   // 错误
         ZErrorModel *customError = [ZErrorModel new];
         customError.code = resultCode;
         customError.message = resultMsg;
@@ -282,7 +285,8 @@ NSString *ZHttpRequestMethodString (ENUM_ZHttpRequestMethod method)
             NSLog(@"接口地址:%@,\n 请求方式:%@\n 接口参数:%@,\n 接口错误:%@", url, method, parameters, @"其他机器登录");
             [self fk_postNotification:kNotification_SignoutWithOtherLogin];
             completeBlock(nil, nil);
-        } else {
+        }
+        else {
             NSLog(@"接口地址:%@,\n 请求方式:%@\n 接口参数:%@,\n 接口错误:%@", url, method, parameters, customError.message);
             completeBlock([responseObject objectForKey:@"data"], customError);
         }
@@ -294,7 +298,6 @@ NSString *ZHttpRequestMethodString (ENUM_ZHttpRequestMethod method)
 - (void)uploadFileWithFile:(NSData *)file fileName:(NSString *)fileName type:(ENUM_UploadFileType)type fileType:(NSString *)fileType completeBlock:(void (^)(id responseObject, ZErrorModel *error))completeBlock
 {
     [self taskUploadFileWithFile:file fileName:fileName type:type fileType:fileType completeBlock:completeBlock];
-    
 }
 
 - (NSURLSessionDataTask *)taskUploadFileWithFile:(NSData *)file fileName:(NSString *)fileName type:(ENUM_UploadFileType)type fileType:(NSString *)fileType completeBlock:(void (^)(id responseObject, ZErrorModel *error))completeBlock{

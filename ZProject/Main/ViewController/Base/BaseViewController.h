@@ -10,5 +10,7 @@
 
 @interface BaseViewController : UIViewController
 
+@property (assign, nonatomic) BOOL isPresentViewController; // 是模态界面
+
 @end
 

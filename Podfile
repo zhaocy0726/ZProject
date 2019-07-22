@@ -5,6 +5,8 @@ target 'ZProject' do
 
     pod 'AFNetworking', '~> 3.0'
     
+    pod 'FMDB'
+    
     pod 'Masonry'
     pod 'MBProgressHUD'
     pod 'MJExtension'

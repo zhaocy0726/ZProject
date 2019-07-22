@@ -30,7 +30,7 @@
     if (isPad) {
         // ipad 上不加这两句会 crash ,iphone 不会
         alert.popoverPresentationController.sourceView = self.view;
-        alert.popoverPresentationController.sourceRect = CGRectMake(Screen_Width - 60, 70, 1.0, 1.0);
+        alert.popoverPresentationController.sourceRect = CGRectMake(SCREEN_WIDTH - 60, 70, 1.0, 1.0);
         alert.popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionUp;
     }
     

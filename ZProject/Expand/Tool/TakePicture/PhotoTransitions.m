@@ -78,8 +78,8 @@
         PhotoViewController * imageVC = (PhotoViewController *)toVC;
         UIImageView * fromImageView = _fromView.imageView;
         UIImageView * toImageView = imageVC.imageView;
-        CGFloat imageH = fromImageView.image.size.height/fromImageView.image.size.width * Screen_Width;
-        CGRect toFrame = CGRectMake(0, (Screen_Height - imageH)/2, Screen_Width, imageH);
+        CGFloat imageH = fromImageView.image.size.height/fromImageView.image.size.width * SCREEN_WIDTH;
+        CGRect toFrame = CGRectMake(0, (SCREEN_HEIGHT - imageH)/2, SCREEN_WIDTH, imageH);
         toImageView.image = fromImageView.image;
         toImageView.frame = toFrame;
         UIImageView * transitionView = [[UIImageView alloc]initWithImage:fromImageView.image];

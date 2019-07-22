@@ -1,14 +1,14 @@
 //
-//  FRPickView.m
+//  PickView.m
 //  youbei
 //
 //  Created by 赵春阳 on 2018/10/17.
 //  Copyright © 2018 赵春阳. All rights reserved.
 //
 
-#import "FRPickView.h"
+#import "PickView.h"
 
-@interface FRPickView ()
+@interface PickView ()
 
 @property (strong, nonatomic) UIView   *viewBackground;
 @property (strong, nonatomic) UIButton *btnCancel;
@@ -17,7 +17,7 @@
 
 @end
 
-@implementation FRPickView
+@implementation PickView
 
 - (instancetype)initWithFrame:(CGRect)frame dataSource:(NSArray *)dataSource selected:(NSInteger)selected;
 {
@@ -98,7 +98,7 @@
  */
 - (void)show
 {
-    self.top = Screen_Height;
+    self.top = SCREEN_HEIGHT;
     [UIView animateWithDuration:.35 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         self.top = 0;
     } completion:^(BOOL finished) {

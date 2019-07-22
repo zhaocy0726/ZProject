@@ -9,7 +9,10 @@
 #ifndef NotificationConstants_h
 #define NotificationConstants_h
 
-/**  */
-static NSString * const kNofification_<# #> = @"kNofification_<# #>";
+#import <Foundation/Foundation.h>
+
+
+/** 账号在其他机器登录 */
+static NSString * const kNotification_SignoutWithOtherLogin = @"kNotification_SignoutWithOtherLogin";
 
 #endif /* NotificationConstants_h */

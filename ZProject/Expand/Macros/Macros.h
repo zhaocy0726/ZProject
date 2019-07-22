@@ -55,8 +55,8 @@
 #pragma mark - 尺寸
 
 // MARK: 不同屏幕尺寸字体适配（320，568是因为效果图为IPHONE5 如果不是则根据实际情况修改）
-#define kScreenWidthRatio  (Main_Screen_Width / 320.0)
-#define kScreenHeightRatio (Main_Screen_Height / 568.0)
+#define kScreenWidthRatio  (Main_SCREEN_WIDTH / 320.0)
+#define kScreenHeightRatio (Main_SCREEN_HEIGHT / 568.0)
 #define kAdaptedWidth(x)  ceilf((x) * kScreenWidthRatio)
 #define kAdaptedHeight(x) ceilf((x) * kScreenHeightRatio)
 #define kAdaptedFontSize(R)     CHINESE_SYSTEM(AdaptedWidth(R))
