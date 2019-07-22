@@ -11,16 +11,24 @@
 
 #import <Foundation/Foundation.h>
 
-#pragma mark - 网络请求方式
-
-typedef NS_ENUM(NSUInteger, ZHttpRequestMethod) {
-    ZHttpRequestMethodGet       = 0,
-    ZHttpRequestMethodPost      = 1,
-    ZHttpRequestMethodPut       = 2,
-    ZHttpRequestMethodPatch     = 3,
-    ZHttpRequestMethodDelete    = 4,
+/// MARK: 网络请求方式
+typedef NS_ENUM(NSUInteger, ENUM_ZHttpRequestMethod) {
+    /** 增加数据 */
+    ENUM_ZHttpRequestMethodPost = 1,
+    /** 获取数据 */
+    ENUM_ZHttpRequestMethodGet,
+    /** 修改数据 */
+    ENUM_ZHttpRequestMethodPut,
+    /** 删除数据 */
+    ENUM_ZHttpRequestMethodDelete,
 };
 
-#pragma mark -
+/// MARK: 上传文件类型
+typedef NS_ENUM(NSUInteger, ENUM_UploadFileType) {
+    /** 图片 */
+    ENUM_UploadFileTypeImage = 0,
+    /** 视频 */
+    ENUM_UploadFileTypeVideo = 1,
+};
 
 #endif /* EnumConstants_h */

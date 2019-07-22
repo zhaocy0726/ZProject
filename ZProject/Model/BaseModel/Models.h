@@ -9,4 +9,6 @@
 #ifndef Models_h
 #define Models_h
 
+#import "ZErrorModel.h"
+
 #endif /* Models_h */

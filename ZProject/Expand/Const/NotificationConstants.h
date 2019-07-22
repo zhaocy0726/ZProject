@@ -9,5 +9,7 @@
 #ifndef NotificationConstants_h
 #define NotificationConstants_h
 
+/**  */
+static NSString * const kNofification_<# #> = @"kNofification_<# #>";
 
 #endif /* NotificationConstants_h */
