@@ -713,11 +713,11 @@
 			isa = PBXGroup;
 			children = (
 				391FD06722E173D500921C1D /* NSString+Category.h */,
-				391FD06822E173D500921C1D /* spelling.h */,
-				391FD06922E173D500921C1D /* NSString+ChineseCharactersToSpelling.h */,
-				391FD06A22E173D500921C1D /* spelling.m */,
 				391FD06B22E173D500921C1D /* NSString+Category.m */,
+				391FD06922E173D500921C1D /* NSString+ChineseCharactersToSpelling.h */,
 				391FD06C22E173D500921C1D /* NSString+ChineseCharactersToSpelling.m */,
+				391FD06822E173D500921C1D /* spelling.h */,
+				391FD06A22E173D500921C1D /* spelling.m */,
 			);
 			path = NSString;
 			sourceTree = "<group>";
