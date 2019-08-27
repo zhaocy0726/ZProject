@@ -86,6 +86,7 @@
 		391FD0FF22E549F500921C1D /* BaseNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 391FD0FE22E549F500921C1D /* BaseNavigationView.m */; };
 		391FD10222E54A6B00921C1D /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 391FD10122E54A6B00921C1D /* BaseNavigationController.m */; };
 		46A549DA17F69BA6D078C0AF /* libPods-ZProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71036C5BFB8557166433CC34 /* libPods-ZProject.a */; };
+		FE7B8E642313DE0C007EE058 /* BaseTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7B8E632313DE0C007EE058 /* BaseTabBarViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -265,6 +266,8 @@
 		439F13460B6F7635E7F3AB62 /* Pods-ZProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZProject/Pods-ZProject.release.xcconfig"; sourceTree = "<group>"; };
 		71036C5BFB8557166433CC34 /* libPods-ZProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6B113B616F1BE689840D703 /* Pods-ZProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZProject/Pods-ZProject.debug.xcconfig"; sourceTree = "<group>"; };
+		FE7B8E622313DE0C007EE058 /* BaseTabBarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTabBarViewController.h; sourceTree = "<group>"; };
+		FE7B8E632313DE0C007EE058 /* BaseTabBarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTabBarViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -501,6 +504,8 @@
 				391FD0FE22E549F500921C1D /* BaseNavigationView.m */,
 				391FD10022E54A6B00921C1D /* BaseNavigationController.h */,
 				391FD10122E54A6B00921C1D /* BaseNavigationController.m */,
+				FE7B8E622313DE0C007EE058 /* BaseTabBarViewController.h */,
+				FE7B8E632313DE0C007EE058 /* BaseTabBarViewController.m */,
 			);
 			name = "Base(基类)";
 			path = Base;
@@ -1193,6 +1198,7 @@
 				391FD0F822E548AF00921C1D /* PhotoTransitions.m in Sources */,
 				391FD0F722E548AF00921C1D /* TakePictureTool.m in Sources */,
 				391FD0EA22E5487800921C1D /* DBManager.m in Sources */,
+				FE7B8E642313DE0C007EE058 /* BaseTabBarViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
