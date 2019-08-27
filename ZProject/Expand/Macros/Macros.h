@@ -13,12 +13,20 @@
 
 // MARK: 开发的时候打印，但是发布的时候不打印的NSLog
 #ifdef DEBUG
-#define NSLog(...) NSLog(@"%s 第%d行 \n %@\n\n",__func__,__LINE__,[NSString stringWithFormat:__VA_ARGS__])
+
+#define NSLog(...) do { \
+NSLog(@"%s 第%d行 \n %@\n\n",__func__,__LINE__,[NSString stringWithFormat:__VA_ARGS__]); \
+} while(0)
+
+#define ZLog(FORMAT, ...) do { \
+fprintf(stderr,"%s %d行 \n %s\n", __func__, __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]); \
+fprintf(stderr, "-----\n");\
+} while(0)
+
 #else
 #define NSLog(...)
+#define ZLog(FORMAT, ...)
 #endif
-
-#define DDLog(xx, ...) NSLog(@"%s(%d): " xx, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
 
 #pragma mark - 字体语言
 
@@ -45,11 +53,13 @@
 
 // MARK: 字体色彩
 #define COLOR_WORD_BLACK      COLOR_HEX(0x333333)
-#define COLOR_WORD_RED        COLOR_RGB(230, 43, 27)  // 钱
 
 // MARK: 灰色字体
 #define COLOR_WORD(x)         COLOR_RGB(x,x,x)
 
+// MARK: 默认背景色
+#define COLOR_DEFAULT_BACKGROUND COLOR_HEX(0xF4F4F4)
+// MARK: 默认分割线颜色
 #define COLOR_UNDER_LINE [UIColor colorWithRed:198/255.0 green:198/255.0 blue:198/255.0 alpha:1]
 
 #pragma mark - 尺寸
@@ -63,7 +73,6 @@
 
 // MARK: 默认图片宽高比
 #define kImageAspectRatioW_H 5/3.f
-// MARK: 默认图片高宽比
 #define kImageAspectRatioH_W 3/5.f
 
 #define UNICODETOUTF16(x) (((((x - 0x10000) >>10) | 0xD800) << 16)  | (((x-0x10000)&3FF) | 0xDC00))
@@ -88,8 +97,6 @@
 #define kTabbar_Height (isPhoneX ? 83.f : 49.f)
 // MARK:  底部安全区偏移量
 #define kSafe_Bottom_Inset (isPhoneX ? 34.f : 0.f)
-// 顶部蓝色背景高度
-#define kTopBlueHeight 148.f
 
 // MARK:  判断是否为 iPhone 5
 #define isPhone5 [[UIScreen mainScreen] bounds].size.width == 320.0f && [[UIScreen mainScreen] bounds].size.height == 568.0f
@@ -179,7 +186,14 @@ isiPhoneX=NO;\
 #define kEndTime   NSLog(@"Time: %f", CFAbsoluteTimeGetCurrent() - start)
 
 
-
+// 10-100 个随机长度字符串(10 的倍数)
+#define kRandomString \
+({NSString *string = @"是考虑到就分开了多十"; \
+for (NSInteger i = 1; i < arc4random() % 10; i ++) { \
+string = [string stringByAppendingString:string]; \
+}\
+(string);\
+})
 
 /// MARK: 临时测试数据，接通接口后删除
 
@@ -188,6 +202,7 @@ isiPhoneX=NO;\
 #define kTestImage2 @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547521379&di=1cbd6c9de4afb1144879a267aa95fa1d&imgtype=jpg&er=1&src=http%3A%2F%2Fi0.hdslb.com%2Fbfs%2Farticle%2Fb6f31e9505acda1d37fee330da3a1d6a1711f28a.jpg"
 #define kTestImage3 @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1546926779248&di=66b6fc56643c7ec4c3a31b90d6261710&imgtype=0&src=http%3A%2F%2Fi0.hdslb.com%2Fbfs%2Farticle%2Faccec800ff454bfc474d154da6ef282664b1db84.jpg"
 #define kTestImage4 @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1546926893108&di=06c38eced5b278076cb33bc872ae9834&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Ffront%2F534%2Fw1366h768%2F20181213%2FvWhR-hqackac2454235.jpg"
+
 #define kArrayImage @[kTestImage0, kTestImage1, kTestImage2, kTestImage3, kTestImage4]
 #define kRandomImage [kArrayImage objectAtIndex:arc4random()%5]
 
