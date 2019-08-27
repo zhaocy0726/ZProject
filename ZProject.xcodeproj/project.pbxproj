@@ -57,8 +57,6 @@
 		391FD0C422E1747B00921C1D /* UIView+Data.m in Sources */ = {isa = PBXBuildFile; fileRef = 391FD09122E1747B00921C1D /* UIView+Data.m */; };
 		391FD0C522E1747B00921C1D /* UIView+DashedLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 391FD09322E1747B00921C1D /* UIView+DashedLine.m */; };
 		391FD0C622E1747B00921C1D /* UIView+CornerCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 391FD09422E1747B00921C1D /* UIView+CornerCategory.m */; };
-		391FD0C722E1747B00921C1D /* UIColor+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 391FD09822E1747B00921C1D /* UIColor+Extension.m */; };
-		391FD0C822E1747B00921C1D /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 391FD09922E1747B00921C1D /* UIView+Extension.m */; };
 		391FD0C922E1747B00921C1D /* UIImageView+DashedLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 391FD09B22E1747B00921C1D /* UIImageView+DashedLine.m */; };
 		391FD0CA22E1747B00921C1D /* UIImageView+SDWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 391FD09C22E1747B00921C1D /* UIImageView+SDWebImage.m */; };
 		391FD0CB22E1747B00921C1D /* UIImage+ColorImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 391FD09D22E1747B00921C1D /* UIImage+ColorImage.m */; };
@@ -220,10 +218,6 @@
 		391FD09222E1747B00921C1D /* UIView+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Color.h"; sourceTree = "<group>"; };
 		391FD09322E1747B00921C1D /* UIView+DashedLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+DashedLine.m"; sourceTree = "<group>"; };
 		391FD09422E1747B00921C1D /* UIView+CornerCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CornerCategory.m"; sourceTree = "<group>"; };
-		391FD09622E1747B00921C1D /* UIColor+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extension.h"; sourceTree = "<group>"; };
-		391FD09722E1747B00921C1D /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
-		391FD09822E1747B00921C1D /* UIColor+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Extension.m"; sourceTree = "<group>"; };
-		391FD09922E1747B00921C1D /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		391FD09B22E1747B00921C1D /* UIImageView+DashedLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+DashedLine.m"; sourceTree = "<group>"; };
 		391FD09C22E1747B00921C1D /* UIImageView+SDWebImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+SDWebImage.m"; sourceTree = "<group>"; };
 		391FD09D22E1747B00921C1D /* UIImage+ColorImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ColorImage.m"; sourceTree = "<group>"; };
@@ -780,7 +774,6 @@
 				391FD07E22E1747B00921C1D /* UIButton */,
 				391FD08122E1747B00921C1D /* UIColor */,
 				391FD08622E1747B00921C1D /* UIView */,
-				391FD09522E1747B00921C1D /* LGCategory */,
 				391FD09A22E1747B00921C1D /* UIImageView */,
 				391FD0A322E1747B00921C1D /* UIViewController */,
 				391FD0AE22E1747B00921C1D /* UINavigationController */,
@@ -838,17 +831,6 @@
 				391FD09422E1747B00921C1D /* UIView+CornerCategory.m */,
 			);
 			path = UIView;
-			sourceTree = "<group>";
-		};
-		391FD09522E1747B00921C1D /* LGCategory */ = {
-			isa = PBXGroup;
-			children = (
-				391FD09622E1747B00921C1D /* UIColor+Extension.h */,
-				391FD09722E1747B00921C1D /* UIView+Extension.h */,
-				391FD09822E1747B00921C1D /* UIColor+Extension.m */,
-				391FD09922E1747B00921C1D /* UIView+Extension.m */,
-			);
-			path = LGCategory;
 			sourceTree = "<group>";
 		};
 		391FD09A22E1747B00921C1D /* UIImageView */ = {
@@ -1268,7 +1250,6 @@
 				391FD0EB22E5487800921C1D /* PickView.m in Sources */,
 				391FD0C322E1747B00921C1D /* UIView+MBProgressHUD.m in Sources */,
 				391FD0D422E1747B00921C1D /* ZTextField.m in Sources */,
-				391FD0C722E1747B00921C1D /* UIColor+Extension.m in Sources */,
 				391FD07222E173D500921C1D /* IPhoneVersion.m in Sources */,
 				391FD0BF22E1747B00921C1D /* UIColor+Extension.m in Sources */,
 				391FD0FF22E549F500921C1D /* BaseNavigationView.m in Sources */,
@@ -1303,7 +1284,6 @@
 				18006EFE1D8FC58B00CDA77D /* AppDelegate.m in Sources */,
 				391FD07422E173D500921C1D /* NSString+Category.m in Sources */,
 				391FD0CF22E1747B00921C1D /* UIViewController+Category.m in Sources */,
-				391FD0C822E1747B00921C1D /* UIView+Extension.m in Sources */,
 				FE7B8E922314BF48007EE058 /* YNPageScrollMenuView.m in Sources */,
 				391FD0F922E548AF00921C1D /* PhotoViewController.m in Sources */,
 				FE7B8E8F2314BF48007EE058 /* YNPageScrollView.m in Sources */,
