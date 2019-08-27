@@ -87,6 +87,20 @@
 		391FD10222E54A6B00921C1D /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 391FD10122E54A6B00921C1D /* BaseNavigationController.m */; };
 		46A549DA17F69BA6D078C0AF /* libPods-ZProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71036C5BFB8557166433CC34 /* libPods-ZProject.a */; };
 		FE7B8E642313DE0C007EE058 /* BaseTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7B8E632313DE0C007EE058 /* BaseTabBarViewController.m */; };
+		FE7B8E872314BF48007EE058 /* AlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7B8E672314BF47007EE058 /* AlertController.m */; };
+		FE7B8E882314BF48007EE058 /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7B8E6A2314BF47007EE058 /* HMSegmentedControl.m */; };
+		FE7B8E892314BF48007EE058 /* UIViewController+YNPageExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7B8E6D2314BF47007EE058 /* UIViewController+YNPageExtend.m */; };
+		FE7B8E8A2314BF48007EE058 /* UIView+YNPageExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7B8E6E2314BF47007EE058 /* UIView+YNPageExtend.m */; };
+		FE7B8E8B2314BF48007EE058 /* UIScrollView+YNPageExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7B8E722314BF48007EE058 /* UIScrollView+YNPageExtend.m */; };
+		FE7B8E8C2314BF48007EE058 /* YNPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7B8E732314BF48007EE058 /* YNPageViewController.m */; };
+		FE7B8E8D2314BF48007EE058 /* YNPageConfigration.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7B8E742314BF48007EE058 /* YNPageConfigration.m */; };
+		FE7B8E8E2314BF48007EE058 /* YNPageTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7B8E772314BF48007EE058 /* YNPageTableView.m */; };
+		FE7B8E8F2314BF48007EE058 /* YNPageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7B8E7A2314BF48007EE058 /* YNPageScrollView.m */; };
+		FE7B8E902314BF48007EE058 /* YNPageHeaderScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7B8E7B2314BF48007EE058 /* YNPageHeaderScrollView.m */; };
+		FE7B8E912314BF48007EE058 /* YNPageCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7B8E7C2314BF48007EE058 /* YNPageCollectionView.m */; };
+		FE7B8E922314BF48007EE058 /* YNPageScrollMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7B8E7E2314BF48007EE058 /* YNPageScrollMenuView.m */; };
+		FE7B8E932314BF48007EE058 /* PlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7B8E832314BF48007EE058 /* PlayerController.m */; };
+		FE7B8E942314BF48007EE058 /* PlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7B8E842314BF48007EE058 /* PlayerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -268,6 +282,34 @@
 		E6B113B616F1BE689840D703 /* Pods-ZProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZProject/Pods-ZProject.debug.xcconfig"; sourceTree = "<group>"; };
 		FE7B8E622313DE0C007EE058 /* BaseTabBarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTabBarViewController.h; sourceTree = "<group>"; };
 		FE7B8E632313DE0C007EE058 /* BaseTabBarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTabBarViewController.m; sourceTree = "<group>"; };
+		FE7B8E662314BF47007EE058 /* AlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertController.h; sourceTree = "<group>"; };
+		FE7B8E672314BF47007EE058 /* AlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertController.m; sourceTree = "<group>"; };
+		FE7B8E692314BF47007EE058 /* HMSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMSegmentedControl.h; sourceTree = "<group>"; };
+		FE7B8E6A2314BF47007EE058 /* HMSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMSegmentedControl.m; sourceTree = "<group>"; };
+		FE7B8E6D2314BF47007EE058 /* UIViewController+YNPageExtend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+YNPageExtend.m"; sourceTree = "<group>"; };
+		FE7B8E6E2314BF47007EE058 /* UIView+YNPageExtend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+YNPageExtend.m"; sourceTree = "<group>"; };
+		FE7B8E6F2314BF47007EE058 /* UIScrollView+YNPageExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+YNPageExtend.h"; sourceTree = "<group>"; };
+		FE7B8E702314BF48007EE058 /* UIView+YNPageExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+YNPageExtend.h"; sourceTree = "<group>"; };
+		FE7B8E712314BF48007EE058 /* UIViewController+YNPageExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+YNPageExtend.h"; sourceTree = "<group>"; };
+		FE7B8E722314BF48007EE058 /* UIScrollView+YNPageExtend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+YNPageExtend.m"; sourceTree = "<group>"; };
+		FE7B8E732314BF48007EE058 /* YNPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNPageViewController.m; sourceTree = "<group>"; };
+		FE7B8E742314BF48007EE058 /* YNPageConfigration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNPageConfigration.m; sourceTree = "<group>"; };
+		FE7B8E762314BF48007EE058 /* YNPageHeaderScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNPageHeaderScrollView.h; sourceTree = "<group>"; };
+		FE7B8E772314BF48007EE058 /* YNPageTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNPageTableView.m; sourceTree = "<group>"; };
+		FE7B8E782314BF48007EE058 /* YNPageCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNPageCollectionView.h; sourceTree = "<group>"; };
+		FE7B8E792314BF48007EE058 /* YNPageScrollMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNPageScrollMenuView.h; sourceTree = "<group>"; };
+		FE7B8E7A2314BF48007EE058 /* YNPageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNPageScrollView.m; sourceTree = "<group>"; };
+		FE7B8E7B2314BF48007EE058 /* YNPageHeaderScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNPageHeaderScrollView.m; sourceTree = "<group>"; };
+		FE7B8E7C2314BF48007EE058 /* YNPageCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNPageCollectionView.m; sourceTree = "<group>"; };
+		FE7B8E7D2314BF48007EE058 /* YNPageTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNPageTableView.h; sourceTree = "<group>"; };
+		FE7B8E7E2314BF48007EE058 /* YNPageScrollMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNPageScrollMenuView.m; sourceTree = "<group>"; };
+		FE7B8E7F2314BF48007EE058 /* YNPageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNPageScrollView.h; sourceTree = "<group>"; };
+		FE7B8E802314BF48007EE058 /* YNPageConfigration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNPageConfigration.h; sourceTree = "<group>"; };
+		FE7B8E812314BF48007EE058 /* YNPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNPageViewController.h; sourceTree = "<group>"; };
+		FE7B8E832314BF48007EE058 /* PlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerController.m; sourceTree = "<group>"; };
+		FE7B8E842314BF48007EE058 /* PlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerView.m; sourceTree = "<group>"; };
+		FE7B8E852314BF48007EE058 /* PlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerController.h; sourceTree = "<group>"; };
+		FE7B8E862314BF48007EE058 /* PlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerView.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -439,6 +481,10 @@
 		18006EDD1D8FC58B00CDA77D /* Tool(工具) */ = {
 			isa = PBXGroup;
 			children = (
+				FE7B8E652314BF47007EE058 /* AlertController */,
+				FE7B8E682314BF47007EE058 /* HMSegmentedControl */,
+				FE7B8E822314BF48007EE058 /* PlayerController */,
+				FE7B8E6B2314BF47007EE058 /* YNPageViewController */,
 				391FD0EC22E548AF00921C1D /* BackButton */,
 				391FD0EF22E548AF00921C1D /* TakePicture */,
 				391FD0E222E5487800921C1D /* DBManager */,
@@ -951,6 +997,78 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		FE7B8E652314BF47007EE058 /* AlertController */ = {
+			isa = PBXGroup;
+			children = (
+				FE7B8E662314BF47007EE058 /* AlertController.h */,
+				FE7B8E672314BF47007EE058 /* AlertController.m */,
+			);
+			path = AlertController;
+			sourceTree = "<group>";
+		};
+		FE7B8E682314BF47007EE058 /* HMSegmentedControl */ = {
+			isa = PBXGroup;
+			children = (
+				FE7B8E692314BF47007EE058 /* HMSegmentedControl.h */,
+				FE7B8E6A2314BF47007EE058 /* HMSegmentedControl.m */,
+			);
+			path = HMSegmentedControl;
+			sourceTree = "<group>";
+		};
+		FE7B8E6B2314BF47007EE058 /* YNPageViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FE7B8E6C2314BF47007EE058 /* Category */,
+				FE7B8E732314BF48007EE058 /* YNPageViewController.m */,
+				FE7B8E742314BF48007EE058 /* YNPageConfigration.m */,
+				FE7B8E752314BF48007EE058 /* View */,
+				FE7B8E802314BF48007EE058 /* YNPageConfigration.h */,
+				FE7B8E812314BF48007EE058 /* YNPageViewController.h */,
+			);
+			path = YNPageViewController;
+			sourceTree = "<group>";
+		};
+		FE7B8E6C2314BF47007EE058 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				FE7B8E6D2314BF47007EE058 /* UIViewController+YNPageExtend.m */,
+				FE7B8E6E2314BF47007EE058 /* UIView+YNPageExtend.m */,
+				FE7B8E6F2314BF47007EE058 /* UIScrollView+YNPageExtend.h */,
+				FE7B8E702314BF48007EE058 /* UIView+YNPageExtend.h */,
+				FE7B8E712314BF48007EE058 /* UIViewController+YNPageExtend.h */,
+				FE7B8E722314BF48007EE058 /* UIScrollView+YNPageExtend.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		FE7B8E752314BF48007EE058 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FE7B8E762314BF48007EE058 /* YNPageHeaderScrollView.h */,
+				FE7B8E772314BF48007EE058 /* YNPageTableView.m */,
+				FE7B8E782314BF48007EE058 /* YNPageCollectionView.h */,
+				FE7B8E792314BF48007EE058 /* YNPageScrollMenuView.h */,
+				FE7B8E7A2314BF48007EE058 /* YNPageScrollView.m */,
+				FE7B8E7B2314BF48007EE058 /* YNPageHeaderScrollView.m */,
+				FE7B8E7C2314BF48007EE058 /* YNPageCollectionView.m */,
+				FE7B8E7D2314BF48007EE058 /* YNPageTableView.h */,
+				FE7B8E7E2314BF48007EE058 /* YNPageScrollMenuView.m */,
+				FE7B8E7F2314BF48007EE058 /* YNPageScrollView.h */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FE7B8E822314BF48007EE058 /* PlayerController */ = {
+			isa = PBXGroup;
+			children = (
+				FE7B8E832314BF48007EE058 /* PlayerController.m */,
+				FE7B8E842314BF48007EE058 /* PlayerView.m */,
+				FE7B8E852314BF48007EE058 /* PlayerController.h */,
+				FE7B8E862314BF48007EE058 /* PlayerView.h */,
+			);
+			path = PlayerController;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1140,7 +1258,9 @@
 			files = (
 				391FD0C422E1747B00921C1D /* UIView+Data.m in Sources */,
 				391FD0CB22E1747B00921C1D /* UIImage+ColorImage.m in Sources */,
+				FE7B8E8A2314BF48007EE058 /* UIView+YNPageExtend.m in Sources */,
 				391FD0D322E1747B00921C1D /* UITableViewCell+SeparatorInset.m in Sources */,
+				FE7B8E942314BF48007EE058 /* PlayerView.m in Sources */,
 				391FD0D122E1747B00921C1D /* UIViewController+Nib.m in Sources */,
 				391FD0D222E1747B00921C1D /* UINavigationController+StatusBar.m in Sources */,
 				391FD0C122E1747B00921C1D /* UIView+FrameHelper.m in Sources */,
@@ -1152,8 +1272,10 @@
 				391FD07222E173D500921C1D /* IPhoneVersion.m in Sources */,
 				391FD0BF22E1747B00921C1D /* UIColor+Extension.m in Sources */,
 				391FD0FF22E549F500921C1D /* BaseNavigationView.m in Sources */,
+				FE7B8E892314BF48007EE058 /* UIViewController+YNPageExtend.m in Sources */,
 				391FD0E922E5487800921C1D /* PrintBeautifulLog.m in Sources */,
 				391FD0C222E1747B00921C1D /* UIView+Color.m in Sources */,
+				FE7B8E8D2314BF48007EE058 /* YNPageConfigration.m in Sources */,
 				391FD0CD22E1747B00921C1D /* UIViewController+Data.m in Sources */,
 				391FD07822E1742C00921C1D /* CacheDataSource.m in Sources */,
 				391FD0C922E1747B00921C1D /* UIImageView+DashedLine.m in Sources */,
@@ -1161,11 +1283,14 @@
 				391FD0CC22E1747B00921C1D /* UIImage+fixOrientation.m in Sources */,
 				18006F021D8FC58B00CDA77D /* BaseViewController.m in Sources */,
 				391FD06D22E173D500921C1D /* NSData+AES.m in Sources */,
+				FE7B8E902314BF48007EE058 /* YNPageHeaderScrollView.m in Sources */,
 				18B74FC11D9235560038BA79 /* BaseNetRequest.m in Sources */,
+				FE7B8E882314BF48007EE058 /* HMSegmentedControl.m in Sources */,
 				391FD0CE22E1747B00921C1D /* UIViewController+storyBoard.m in Sources */,
 				391FD0D622E1747B00921C1D /* CALayer+Transition.m in Sources */,
 				18006F001D8FC58B00CDA77D /* main.m in Sources */,
 				391FD0D022E1747B00921C1D /* UIViewController+Camera.m in Sources */,
+				FE7B8E8B2314BF48007EE058 /* UIScrollView+YNPageExtend.m in Sources */,
 				391FD05622E16F8D00921C1D /* ZErrorModel.m in Sources */,
 				391FD06F22E173D500921C1D /* NSObject+Notification.m in Sources */,
 				18B74FCD1D928BEE0038BA79 /* ZNetworkRequest.m in Sources */,
@@ -1173,12 +1298,16 @@
 				391FD0BD22E1747B00921C1D /* UIButton+EnlargeTouch.m in Sources */,
 				391FD0F622E548AF00921C1D /* BackButton.m in Sources */,
 				391FD0D522E1747B00921C1D /* ZSearchBarTextField.m in Sources */,
+				FE7B8E8E2314BF48007EE058 /* YNPageTableView.m in Sources */,
 				391FD0C022E1747B00921C1D /* UIView+Nib.m in Sources */,
 				18006EFE1D8FC58B00CDA77D /* AppDelegate.m in Sources */,
 				391FD07422E173D500921C1D /* NSString+Category.m in Sources */,
 				391FD0CF22E1747B00921C1D /* UIViewController+Category.m in Sources */,
 				391FD0C822E1747B00921C1D /* UIView+Extension.m in Sources */,
+				FE7B8E922314BF48007EE058 /* YNPageScrollMenuView.m in Sources */,
 				391FD0F922E548AF00921C1D /* PhotoViewController.m in Sources */,
+				FE7B8E8F2314BF48007EE058 /* YNPageScrollView.m in Sources */,
+				FE7B8E932314BF48007EE058 /* PlayerController.m in Sources */,
 				391FD0C522E1747B00921C1D /* UIView+DashedLine.m in Sources */,
 				391FD0BE22E1747B00921C1D /* UIColor+PXColors.m in Sources */,
 				391FD0CA22E1747B00921C1D /* UIImageView+SDWebImage.m in Sources */,
@@ -1190,15 +1319,18 @@
 				391FD0FC22E549B100921C1D /* BaseView.m in Sources */,
 				18F6CC281D912DAE0093262B /* DetailViewController.m in Sources */,
 				391FD07122E173D500921C1D /* NSObject+Category.m in Sources */,
+				FE7B8E912314BF48007EE058 /* YNPageCollectionView.m in Sources */,
 				391FD0C622E1747B00921C1D /* UIView+CornerCategory.m in Sources */,
 				391FD0E822E5487800921C1D /* LocationManager.m in Sources */,
 				391FD0BC22E1747B00921C1D /* UILabel+Category.m in Sources */,
 				391FD07322E173D500921C1D /* spelling.m in Sources */,
 				391FD0DB22E5482D00921C1D /* ZAppStore.m in Sources */,
 				391FD0F822E548AF00921C1D /* PhotoTransitions.m in Sources */,
+				FE7B8E872314BF48007EE058 /* AlertController.m in Sources */,
 				391FD0F722E548AF00921C1D /* TakePictureTool.m in Sources */,
 				391FD0EA22E5487800921C1D /* DBManager.m in Sources */,
 				FE7B8E642313DE0C007EE058 /* BaseTabBarViewController.m in Sources */,
+				FE7B8E8C2314BF48007EE058 /* YNPageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
