@@ -77,17 +77,24 @@
     
 }
 
-//- (BOOL)prefersStatusBarHidden{
-//    return NO;
-//}
+#pragma mark - 屏幕旋转控制
 
-- (UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleLightContent;
+- (BOOL)shouldAutorotate {
+    return [self.selectedViewController shouldAutorotate];
 }
 
-// 主界面竖屏锁定
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
-    return UIInterfaceOrientationMaskPortrait;
+    return [self.selectedViewController supportedInterfaceOrientations];
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    return [self.selectedViewController preferredInterfaceOrientationForPresentation];
+}
+
+#pragma mark - 状态栏
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 @end

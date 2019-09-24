@@ -32,5 +32,18 @@
     [self.navigationBar setTranslucent:NO];
 }
 
+#pragma mark - 屏幕旋转方向
+
+- (BOOL)shouldAutorotate {
+    return [[self.viewControllers lastObject]shouldAutorotate];
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return [[self.viewControllers lastObject]supportedInterfaceOrientations];
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    return [[self.viewControllers lastObject] preferredInterfaceOrientationForPresentation];
+}
 
 @end
