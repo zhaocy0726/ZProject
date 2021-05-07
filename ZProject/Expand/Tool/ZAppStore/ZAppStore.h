@@ -8,16 +8,37 @@
 
 #import <Foundation/Foundation.h>
 
+/// 内购支付状态
+typedef NS_ENUM(NSUInteger, IAPPayState) {
+    IAPPayStateCancel,
+    IAPPayStateSuccess,
+    IAPPayStateFail,
+};
+
+/**
+ 内购支付结果
+ 
+ @param state 支付结果
+ @param receipt 支付结果验证
+ @param errorMsg 错误信息
+ */
+typedef void(^PayResultBlock)(IAPPayState state, NSString *receipt, NSString *errorMsg);
+
 @interface ZAppStore : NSObject
 
-+ (instancetype)shareInstance;
++ (instancetype)manager;
+
+// 开始监听
+- (void)startManager;
+// 结束监听
+- (void)stopManager;
 
 /**
  苹果内购
 
- @param productId      商品id
- @param viewController 控制器
+ @param productId  商品id
+ @param orderId  订单id
  */
-- (void)buyProductWithId:(NSString *)productId viewController:(UIViewController *)viewController;
+- (void)buyProductWithId:(NSString *)productId orderId:(NSString *)orderId result:(PayResultBlock)result;
 
 @end
