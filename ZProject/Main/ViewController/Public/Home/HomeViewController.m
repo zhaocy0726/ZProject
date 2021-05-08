@@ -8,14 +8,11 @@
 
 #import "HomeViewController.h"
 
-#import "HomeTableViewCell.h"
-#import "DetailViewController.h"
+#import "ZSignInApple.h"
 
-@interface HomeViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface HomeViewController ()
 
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
-
-@property (strong, nonatomic) NSMutableArray *arrDataSource;
+@property (strong, nonatomic) UIButton *testButton;
 
 @end
 
@@ -23,44 +20,43 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([HomeTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([HomeTableViewCell class])];
+    
+    [self.view addSubview:self.testButton];
+    [_testButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center .mas_equalTo(self.view);
+        make.size   .mas_equalTo(CGSizeMake(100, 100));
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-    
-    
 }
 
-
-
-#pragma mark -
-#pragma mark UITableViewDataSource
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (UIButton *)testButton
 {
-    return 10;
+    if (_testButton == nil) {
+        UIButton *button = UIButton.new;
+        button.backgroundColor = UIColor.redColor;
+        
+        [button setTitle:@"testButton" forState:UIControlStateNormal];
+        [button setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
+        [button.titleLabel setFont:[UIFont systemFontOfSize:16]];
+        [button addTarget:self action:@selector(clickTestButton) forControlEvents:UIControlEventTouchUpInside];
+        
+        _testButton = button;
+    }
+    return _testButton;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)clickTestButton
 {
-    HomeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([HomeTableViewCell class])];
-    return cell;
+    [ZSignInApple signInAppleSuccess:^(NSString * _Nonnull userIdentifier) {
+        [self presentMessageTips:userIdentifier];
+    } failure:^(NSString * _Nonnull errorMessage) {
+        [self presentMessageTips:errorMessage];
+    }];
 }
 
-#pragma mark -
-#pragma mark UITableViewDelegate
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 44.f;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-}
 
 @end

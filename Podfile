@@ -5,6 +5,8 @@ target 'ZProject' do
 
     pod 'AFNetworking', '~> 3.0'
     
+    pod 'Bugly'
+
     pod 'FMDB'
     
     pod 'Masonry'
@@ -13,6 +15,9 @@ target 'ZProject' do
     pod 'MJRefresh'
     
     pod 'SDWebImage'
+    pod 'SSKeychain'
+    
+    
 
 end
 

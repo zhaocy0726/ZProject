@@ -23,7 +23,6 @@
 
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
-    [[SDImageCache sharedImageCache] clearMemory];
 }
 
 - (void)baseSetting{

@@ -79,7 +79,7 @@ NSString *ZHttpRequestMethodString (ENUM_ZHttpRequestMethod method)
                 [operationQueue setSuspended:YES]; // 暂停队列
                 break;
         }
-        DDLog(@"networkReachabilityStatus: %@", AFStringFromNetworkReachabilityStatus(status));
+        NSLog(@"networkReachabilityStatus: %@", AFStringFromNetworkReachabilityStatus(status));
     }];
     
     return networkState;
