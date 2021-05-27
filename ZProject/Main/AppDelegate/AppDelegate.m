@@ -8,6 +8,9 @@
 
 #import "AppDelegate.h"
 
+#import "ZAppStore.h"
+#import "ZSignInApple.h"
+
 @interface AppDelegate ()
 
 @end
@@ -18,7 +21,65 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    [self checkUnfinishedInApplePurshase];
+
     return YES;
+}
+
+
+#pragma mark - 检测登录状态
+
+- (void)checkSignInAppleState
+{
+    [ZSignInApple.shareInstance checkSignInAppleExpired:^(BOOL expired) {
+        if (expired) {
+//            [[UserRequest sharedInstance] signout];
+        }
+    }];
+}
+
+#pragma mark - 检测未完成支付的订单
+- (void)checkUnfinishedInApplePurshase
+{
+    // 开始监听内购
+    [ZAppStore.manager startManager];
+    [ZAppStore.manager setCheckUnfinishedOrderBlock:^(IAPPayState state, NSString *receipt, NSString *errorMsg) {
+        [self checkIAPReceipt:receipt status:state];
+    }];
+}
+
+/// MARK: 核验内购收据是否正常
+- (void)checkIAPReceipt:(NSString *)receipt status:(NSInteger)status
+{
+    NSDictionary *dic = [NSUserDefaults.standardUserDefaults objectForKey:kIAPReceipt];
+    if (!dic) { return; }
+    NSString *dicReceipt = [dic[@"receipt"] stringValue];
+    NSString *dicOrderId = [dic[@"orderId"] stringValue];
+    NSInteger dicLadderId = [dic[@"ladderId"] integerValue];
+    
+    if (dicReceipt && dicOrderId && dicLadderId) {
+//        [OrderRequest.sharedInstance sendRechargeResultWithReceipt:receipt
+//                                                           priceId:dicLadderId
+//                                                           orderId:dicOrderId
+//                                                            status:status
+//                                                        completion:^(id object, ErrorModel *error) {
+//            [ZAppStore.manager removeReceiptInfo];
+//        }];
+    }
+    else {
+        if (!dicReceipt) {
+            NSString *getReceipt = [ZAppStore.manager getReceipt];
+//            [OrderRequest.sharedInstance sendRechargeResultWithReceipt:getReceipt
+//                                                               priceId:dicLadderId
+//                                                               orderId:dicOrderId
+//                                                                status:status
+//                                                            completion:^(id object, ErrorModel *error) {
+//                [ZAppStore.manager removeReceiptInfo];
+//            }];
+        } else {
+            [ZAppStore.manager removeReceiptInfo];
+        }
+    }
 }
 
 //- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url

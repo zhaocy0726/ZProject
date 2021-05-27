@@ -8,8 +8,6 @@
 
 #import "ZAppStore.h"
 
-#import <StoreKit/StoreKit.h> // AppStore 支付 必须引用
-
 /// 支付异常状态
 typedef NS_ENUM(NSUInteger, IAPError) {
     IAPErrorUnknow,             // 未知错误
@@ -43,6 +41,7 @@ static ZAppStore *manager = nil;
 @property (copy, nonatomic) NSString *productId; // 商品id
 @property (copy, nonatomic) NSString *orderId; // 订单id
 @property (copy, nonatomic) NSString *receipt; // 支付凭证
+@property (assign, nonatomic) NSInteger ladderId; // 价格阶梯id
 @property (copy, nonatomic) PayResultBlock payResult; // 支付结果
 
 @end
@@ -79,13 +78,14 @@ static ZAppStore *manager = nil;
 #pragma mark - 交易流程
 
 /// MARK: 根据商品 id 购买
-- (void)buyProductWithId:(NSString *)productId orderId:(NSString *)orderId result:(PayResultBlock)result
+- (void)buyProductWithId:(NSString *)productId orderId:(NSString *)orderId ladderId:(NSInteger)ladderId result:(PayResultBlock)result
 {
     // 检查是否有未完成的交易
     [self removeAllUncompleteTransaction];
     
     self.productId = productId;
     self.orderId = orderId;
+    self.ladderId = ladderId;
     self.payResult = result;
     
     if (!self.productId || !self.productId.length) {
@@ -95,6 +95,7 @@ static ZAppStore *manager = nil;
 
     // 检查是否能够使用app内购
     if ([SKPaymentQueue canMakePayments]) {
+        NSLog(@"IAP: productId: %@", self.productId);
         [self requestProductArray:@[self.productId]];
     }
     else {
@@ -112,7 +113,7 @@ static ZAppStore *manager = nil;
             SKPaymentTransaction *transaction = [transactions objectAtIndex:count - 1];
             if (transaction.transactionState == SKPaymentTransactionStatePurchased ||
                 transaction.transactionState == SKPaymentTransactionStateRestored) {
-                
+                [self removeReceiptInfo];
                 [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
                 return;
             }
@@ -165,7 +166,7 @@ static ZAppStore *manager = nil;
     NSLog(@"IAP: 发送购买请求");
     SKMutablePayment *payment = [SKMutablePayment paymentWithProduct:currentProduct];
     // 使用苹果提供的属性，将平台订单号复制给这个属性作为参数，处理漏单问题
-//    payment.applicationUsername = self.orderId;
+    payment.applicationUsername = self.orderId;
     [[SKPaymentQueue defaultQueue] addPayment:payment];
 }
 
@@ -174,12 +175,13 @@ static ZAppStore *manager = nil;
 /// MARK: 请求商品失败
 - (void)request:(SKRequest *)request didFailWithError:(NSError *)error
 {
-    self.payResult(IAPPayStateCancel, nil, error.localizedDescription);
+    !self.payResult ?: self.payResult(IAPPayStateCancel, nil, error.localizedDescription);
 }
 
 /// MARK: 请求商品结束
 - (void)requestDidFinish:(SKRequest *)request
 {
+    [self saveReceipt:nil];
     NSLog(@"IAP: 反馈信息结束");
 }
 
@@ -205,6 +207,9 @@ static ZAppStore *manager = nil;
             case SKPaymentTransactionStatePurchasing:
                 NSLog(@"IAP: 订单状态 == 正在购买");
                 break;
+            case SKPaymentTransactionStateDeferred:
+                NSLog(@"IAP: 订单状态 == 延期的");
+                break;
             default:
                 NSLog(@"IAP: 订单状态 == 未确定");
                 break;
@@ -217,6 +222,8 @@ static ZAppStore *manager = nil;
 /// MARK: 交易失败
 - (void)failTransaction:(SKPaymentTransaction *)transaction
 {
+    [self removeReceiptInfo];
+    
     // 检查是否为取消支付
     if (transaction.error.code == SKErrorPaymentCancelled) {
         NSLog(@"IAP: 订单状态2 == 取消支付");
@@ -241,93 +248,127 @@ static ZAppStore *manager = nil;
     [self getReceiptAndSendToService:transaction];
 }
 
-/// MARK: 获取支付凭证
-- (void)getReceiptAndSendToService:(SKPaymentTransaction *)transaction
+- (NSString *)getReceipt
 {
     // 从沙盒中获取交易凭证并且拼接成请求体数据
     NSURL *receiptUrl = [[NSBundle mainBundle] appStoreReceiptURL];
     NSData *receiptData = [NSData dataWithContentsOfURL:receiptUrl];
-    if (!receiptData) {
-        self.payResult(IAPPayStateFail, nil, @"支付异常，请联系管理检查订单状态");
+    // 转化为base64字符串
+    NSString *receipt = [receiptData base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
+    return receipt;
+}
+
+/// MARK: 获取支付凭证
+- (void)getReceiptAndSendToService:(SKPaymentTransaction *)transaction
+{
+    // 从沙盒中获取交易凭证并且拼接成请求体数据
+    self.receipt = [self getReceipt];
+    
+    if (!self.receipt) {
+        !self.payResult ?: self.payResult(IAPPayStateFail, nil, @"支付异常，请检查订单状态");
+        !self.checkUnfinishedOrderBlock ?: self.checkUnfinishedOrderBlock(IAPPayStateFail, nil, @"支付异常，请检查订单状态");
         // 结束交易
         [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
         return;
     }
-    // 转化为base64字符串
-    self.receipt = [receiptData base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
-    self.payResult(IAPPayStateSuccess, self.receipt, nil);
+
+    [self saveReceipt:self.receipt];
+    !self.payResult ?: self.payResult(IAPPayStateSuccess, self.receipt, nil);
+    if (!self.payResult) {
+        !self.checkUnfinishedOrderBlock ?: self.checkUnfinishedOrderBlock(IAPPayStateSuccess, self.receipt, nil);
+    }
     
     // 结束交易
     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
 }
 
-/// MARK: 通过苹果服务器审核订单
-- (void)checkReceiptFromAppleService
-{
-    NSString *bodyString = [NSString stringWithFormat:@"{\"receipt-data\" : \"%@\"}", self.receipt];//拼接请求数据
-    // 再转换为字符串,来发送请求
-    NSData *bodyData = [bodyString dataUsingEncoding:NSUTF8StringEncoding];
-    // 创建请求到苹果官方进行购买验证
-    NSURL *url = [NSURL URLWithString:SandBox];
-    NSMutableURLRequest *requestM = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10.f];
-    requestM.HTTPBody = bodyData;
-    requestM.HTTPMethod = @"POST";
-    // 创建连接并发送同步请求
-    NSError *error = nil;
-    NSData *responseData = [NSURLConnection sendSynchronousRequest:requestM returningResponse:nil error:&error];
-    if (error) {
-        NSLog(@"验证购买过程中发生错误，错误信息：%@",error.localizedDescription);
-        return;
-    }
-    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:nil];
-    NSLog(@"%@",dic);
-    if (dic) {
-        NSLog(@"购买成功！\n%@", dic);
-//        NSDictionary *dicReceipt = dic[@"receipt"];
-//        NSDictionary *dicInApp = [dicReceipt[@"in_app"] firstObject];
-//        NSString *productIdentifier = dicInApp[@"product_id"];//读取产品标识
-//        // 如果是消耗品则记录购买数量，非消耗品则记录是否购买过
-//        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//        if ([productIdentifier isEqualToString:@"123"]) {
-//            NSInteger purchasedCount = [defaults integerForKey:productIdentifier]; //已购买数量
-//            [[NSUserDefaults standardUserDefaults] setInteger:(purchasedCount + 1) forKey:productIdentifier];
-//        }
-//        else {
-//            [defaults setBool:YES forKey:productIdentifier];
-//        }
-        //在此处对购买记录进行存储，可以存储到服务器端
-        self.payResult(IAPPayStateSuccess, self.receipt, nil);
-    }
-    else {
-        [self payErrorHandler:IAPErrorPayFail];
-    }
-}
+///// MARK: 通过苹果服务器审核订单
+//- (void)checkReceiptFromAppleService
+//{
+//    NSString *bodyString = [NSString stringWithFormat:@"{\"receipt-data\" : \"%@\"}", self.receipt];//拼接请求数据
+//    // 再转换为字符串,来发送请求
+//    NSData *bodyData = [bodyString dataUsingEncoding:NSUTF8StringEncoding];
+//    // 创建请求到苹果官方进行购买验证
+//    NSURL *url = [NSURL URLWithString:SandBox];
+//    NSMutableURLRequest *requestM = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10.f];
+//    requestM.HTTPBody = bodyData;
+//    requestM.HTTPMethod = @"POST";
+//    // 创建连接并发送同步请求
+//    NSError *error = nil;
+//    NSData *responseData = [NSURLConnection sendSynchronousRequest:requestM returningResponse:nil error:&error];
+//    if (error) {
+//        NSLog(@"验证购买过程中发生错误，错误信息：%@",error.localizedDescription);
+//        return;
+//    }
+//    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:nil];
+//    NSLog(@"%@",dic);
+//    if (dic) {
+//        NSLog(@"购买成功！\n%@", dic);
+////        NSDictionary *dicReceipt = dic[@"receipt"];
+////        NSDictionary *dicInApp = [dicReceipt[@"in_app"] firstObject];
+////        NSString *productIdentifier = dicInApp[@"product_id"];//读取产品标识
+////        // 如果是消耗品则记录购买数量，非消耗品则记录是否购买过
+////        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+////        if ([productIdentifier isEqualToString:@"123"]) {
+////            NSInteger purchasedCount = [defaults integerForKey:productIdentifier]; //已购买数量
+////            [[NSUserDefaults standardUserDefaults] setInteger:(purchasedCount + 1) forKey:productIdentifier];
+////        }
+////        else {
+////            [defaults setBool:YES forKey:productIdentifier];
+////        }
+//        //在此处对购买记录进行存储，可以存储到服务器端
+//        !self.payResult ?: self.payResult(IAPPayStateSuccess, self.receipt, nil);
+//    }
+//    else {
+//        [self payErrorHandler:IAPErrorPayFail];
+//    }
+//}
 
 /// MARK: 失败处理
 - (void)payErrorHandler:(IAPError)error
 {
     switch (error) {
         case IAPErrorNoProductInfo:
-            self.payResult(IAPPayStateCancel, nil, @"无法获取商品信息，支付失败");
+            !self.payResult ?: self.payResult(IAPPayStateCancel, nil, @"无法获取商品信息，支付失败");
             break;
         case IAPErrorCannotMakePayments:
-            self.payResult(IAPPayStateCancel, nil, @"您的设备不支持内购");
+            !self.payResult ?: self.payResult(IAPPayStateCancel, nil, @"您的设备不支持内购");
             break;
         case IAPErrorPayCancel:
-            self.payResult(IAPPayStateCancel, nil, @"取消支付");
+            !self.payResult ?: self.payResult(IAPPayStateCancel, nil, @"取消支付");
             break;
         case IAPErrorPayFail:
-            self.payResult(IAPPayStateFail, nil, @"支付失败");
+            !self.payResult ?: self.payResult(IAPPayStateFail, nil, @"支付失败");
             break;
         default:
             break;
     }
 }
 
-//- (void)dealloc
-//{
-//    // 移除观察者
-//    [[SKPaymentQueue defaultQueue] removeTransactionObserver:self];
-//}
+#pragma mark - 对订单的处理
+
+- (void)saveReceipt:(NSString *)receipt
+{
+    if (!self.productId || !self.orderId) {
+        return;
+    }
+    NSMutableDictionary *muDic = [NSMutableDictionary dictionary];
+    
+    [muDic setValue:self.orderId forKey:@"orderId"];
+    [muDic setValue:self.productId forKey:@"productId"];
+    [muDic setValue:@(self.ladderId) forKey:@"ladderId"];
+    
+    if (receipt) {
+        [muDic setValue:receipt forKey:@"receipt"];
+    }
+    
+    [NSUserDefaults.standardUserDefaults setObject:(NSDictionary *)muDic forKey:kIAPReceipt];
+    [NSUserDefaults.standardUserDefaults synchronize];
+}
+
+- (void)removeReceiptInfo
+{
+    [NSUserDefaults.standardUserDefaults removeObjectForKey:kIAPReceipt];
+}
 
 @end
